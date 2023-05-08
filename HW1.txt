@@ -1,0 +1,40 @@
+					TASKs 1
+1.Вывести зарплату сотрудника с именем ‘Lex’ и фамилией ‘De Haan'.
+
+2.Вывести всех сотрудников с jobid ‘FIACCOUNT’ и зарабатывающих меньше 8000.
+
+3.Вывести сотрудников, у которых в фамилии в середине слова встречаются сочетания ‘kk’ или ‘ll’.
+
+4.Вывести сотрудников с commission_pct NULL.
+
+5.Вывести всех сотрудников кроме тех, кто работает в департаментах 80 и 110.
+
+6.Вывести сотрудников зарабатывающих от 5000 до 7000 (включая концы)
+
+-----------------------------------------------------------------------
+1.
+SELECT salary FROM employees
+WHERE first_name LIKE 'Lex' AND last_name LIKE 'De Haan'
+
+2.
+SELECT * FROM employees
+WHERE job_id LIKE 'FI_ACCOUNT' AND salary < 8000
+
+3.
+SELECT first_name, last_name FROM employees
+ WHERE last_name LIKE '%_kk_%' OR last_name LIKE '%_ll_%';
+
+4.
+select * from employees
+WHERE commission_pct is NULL
+
+5.
+SELECT * FROM employees
+WHERE department_id NOT IN(80, 110)
+
+--SELECT first_name, last_name, department_id FROM employees WHERE department_id NOT IN (SELECT department_id FROM employees WHERE department_id IN (80, 110));//это для себя оставлю вариант.
+
+6.
+
+SELECT first_name, last_name, salary FROM employees
+WHERE salary BETWEEN 5000 and 7000
